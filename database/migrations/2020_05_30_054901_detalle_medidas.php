@@ -13,7 +13,16 @@ class DetalleMedidas extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('detalle_medidas', function (Blueprint $table) {
+            $table->increments('id');
+            $table->decimal('equivalente', 10, 2); //Detalle de las medidas
+            $table->boolean('estado')->default(1);
+            $table->integer('idmedida')->unsigned();
+            $table->foreign('idmedida')->references('id')->on('medidas');
+            $table->integer('idproducto')->unsigned();
+            $table->foreign('idproducto')->references('id')->on('productos');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +32,6 @@ class DetalleMedidas extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('detalle_medidas');
     }
 }

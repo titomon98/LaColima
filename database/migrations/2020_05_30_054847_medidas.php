@@ -13,7 +13,12 @@ class Medidas extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('medidas', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre', 50);
+            $table->boolean('estado')->default(1);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class Medidas extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('medidas');
     }
 }

@@ -13,7 +13,16 @@ class PagoVentas extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('pago_ventas', function (Blueprint $table) {
+            $table->increments('id');
+            $table->decimal('cantidad', 10, 2); //cantidad del tipo de pago
+            $table->boolean('estado')->default(1);
+            $table->integer('idtipopago')->unsigned();
+            $table->foreign('idtipopago')->references('id')->on('tipos_pago');
+            $table->integer('idventa')->unsigned();
+            $table->foreign('idventa')->references('id')->on('ventas');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +32,6 @@ class PagoVentas extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('pago_ventas');
     }
 }
