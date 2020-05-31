@@ -25,7 +25,7 @@ class Detallecompra extends Migration
             $table->foreign('idcompra')->references('id')->on('compras');
 
             $table->integer('idmedida')->unsigned();
-            $table->foreign('idmedida')->references('id')->on('medidas');
+            $table->foreign('idmedida')->references('id')->on('detalle_medidas');
 
             $table->integer('idexistencia')->unsigned();
             $table->foreign('idexistencia')->references('id')->on('existencias');

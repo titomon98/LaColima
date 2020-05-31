@@ -16,14 +16,11 @@ class Caja extends Migration
         Schema::create('caja', function (Blueprint $table) { //Registro de quienes manejan el dinero, dependiendo de la localidad
             $table->increments('id');
             $table->string('descripcion', 190)->nullable();
-            $table->string('numero_documento', 50);
             $table->decimal('cantidad', 10, 2);
-            $table->string('fecha_transaccion', 50);
             $table->boolean('estado')->default(1);
-            $table->integer('idempleado')->unsigned();
-            $table->foreign('idempleado')->references('id')->on('empleados');
             $table->integer('idlocalidad')->unsigned();
             $table->foreign('idlocalidad')->references('id')->on('localidad');
+            $table->timestamps();
         });
     }
 

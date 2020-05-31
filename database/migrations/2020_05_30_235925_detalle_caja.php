@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DetalleTraslado extends Migration
+class DetalleGastos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,24 +13,16 @@ class DetalleTraslado extends Migration
      */
     public function up()
     {
-        Schema::create('detalle_traslado', function (Blueprint $table) { //Registro de quienes manejan el dinero, dependiendo de la localidad
+        Schema::create('detalle_caja', function (Blueprint $table) { //Registro de quienes manejan el dinero, dependiendo de la localidad
             $table->increments('id');
             $table->string('descripcion', 190)->nullable();
-            $table->integer('cantidad');
+            $table->string('numero_documento', 50);
+            $table->decimal('cantidad', 10, 2);
             $table->boolean('estado')->default(1);
-
-            $table->integer('idvehiculo')->unsigned();
-            $table->foreign('idvehiculo')->references('id')->on('vehiculos');
-
             $table->integer('idempleado')->unsigned();
             $table->foreign('idempleado')->references('id')->on('empleados');
-            
-            $table->integer('idenvia')->unsigned();
-            $table->foreign('idenvia')->references('id')->on('existencias');
-
-            $table->integer('idrecibe')->unsigned();
-            $table->foreign('idrecibe')->references('id')->on('existencias');
-
+            $table->integer('idcaja')->unsigned();
+            $table->foreign('idcaja')->references('id')->on('caja');
             $table->timestamps();
         });
     }
@@ -42,6 +34,6 @@ class DetalleTraslado extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detalle_traslado');
+        Schema::dropIfExists('detalle_caja');
     }
 }
