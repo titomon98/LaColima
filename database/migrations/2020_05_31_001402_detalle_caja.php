@@ -22,7 +22,7 @@ class DetalleCaja extends Migration
             $table->integer('idempleado')->unsigned();
             $table->foreign('idempleado')->references('id')->on('empleados');
             $table->integer('idcaja')->unsigned();
-            $table->foreign('idcaja')->references('id')->on('caja');
+            $table->foreign('idcaja')->references('id')->on('cuentas');
             $table->timestamps();
         });
     }
