@@ -19,9 +19,6 @@ class DetalleTraslado extends Migration
             $table->integer('cantidad');
             $table->boolean('estado')->default(1);
 
-            $table->integer('idvehiculo')->unsigned();
-            $table->foreign('idvehiculo')->references('id')->on('vehiculos');
-
             $table->integer('idempleado')->unsigned();
             $table->foreign('idempleado')->references('id')->on('empleados');
             

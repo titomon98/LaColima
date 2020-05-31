@@ -19,6 +19,8 @@ class Empleados extends Migration
             $table->date('fecha_contratacion');
             $table->boolean('estado')->default(1);
             $table->foreign('id')->references('id')->on('personas')->onDelete('cascade');
+            $table->integer('idlocalidad')->unsigned();
+            $table->foreign('idlocalidad')->references('id')->on('localidad');
         });
     }
 

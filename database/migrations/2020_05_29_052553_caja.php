@@ -13,9 +13,10 @@ class Caja extends Migration
      */
     public function up()
     {
-        Schema::create('caja', function (Blueprint $table) { //Registro de quienes manejan el dinero, dependiendo de la localidad
+        Schema::create('cuentas', function (Blueprint $table) { //Registro de quienes manejan el dinero, dependiendo de la localidad
             $table->increments('id');
             $table->string('descripcion', 190)->nullable();
+            $table->string('nombre', 50);
             $table->decimal('cantidad', 10, 2);
             $table->boolean('estado')->default(1);
             $table->integer('idlocalidad')->unsigned();
@@ -31,6 +32,6 @@ class Caja extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('caja');
+        Schema::dropIfExists('cuentas');
     }
 }

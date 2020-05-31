@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Vehiculos extends Migration
+class DetalleCreditos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class Vehiculos extends Migration
      */
     public function up()
     {
-        Schema::create('vehiculos', function (Blueprint $table) { //Registro de quienes manejan el dinero, dependiendo de la localidad
+        Schema::create('detalle_credito', function (Blueprint $table) { //Registro de quienes manejan el dinero, dependiendo de la localidad
             $table->increments('id');
-            $table->string('placa', 25);
             $table->string('descripcion', 190)->nullable();
+            $table->decimal('cantidad', 10, 2);
             $table->boolean('estado')->default(1);
-            $table->integer('idlocalidad')->unsigned();
-            $table->foreign('idlocalidad')->references('id')->on('localidad');
+            $table->integer('idventa')->unsigned();
+            $table->foreign('idventa')->references('id')->on('ventas');
+            $table->timestamps();
         });
     }
 
@@ -30,6 +31,6 @@ class Vehiculos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vehiculos');
+        Schema::dropIfExists('detalle_credito');
     }
 }
